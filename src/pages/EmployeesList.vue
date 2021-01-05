@@ -79,7 +79,6 @@ export default {
     FilterCheckbox
   },
   created(){
-    this.loadData()
     axios.get('http://localhost:3000/departments')
     .then(response => {
       this.filters.departmentId.data = response.data;

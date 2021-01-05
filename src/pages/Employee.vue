@@ -11,7 +11,7 @@
     </div>
     <div class="card-footer">
       <button class="btn btn-primary" @click="openEditor = true">Edit</button>
-      <button class="btn btn-danger ml-2" @click="openEditor = true">Delete</button>
+      <button class="btn btn-danger ml-2" @click="deleteEmployee">Delete</button>
     </div>
   </div>
   <employee-edit :employee="employee" :close-callback="closeEditor" v-if="openEditor"></employee-edit>
@@ -45,10 +45,17 @@ export default {
       axios.get(`http://localhost:3000/employees/${this.$route.params.id}`)
       .then(response => {
         this.employee = response.data
-        // axios.get(`http://localhost:3000/departments/${this.employee.departmentId}`)
-        // .then(response => this.employee.department = response.data.name)
+        console.log(response)
+        axios.get(`http://localhost:3000/departments/${this.employee.departmentId}`)
+        .then(response => this.employee.department = response.data.name)
         this.ready = true
       })
+    },
+    deleteEmployee(){
+      if(confirm('Are you sure about deleting current employee?')){
+        axios.delete(`http://localhost:3000/employees/${this.$route.params.id}`)
+        .then(response => {response.status == 200 ? this.$router.push({path: '/employees'}) : null})
+      }
     }
   }
 }

@@ -1,14 +1,6 @@
 {
   "employees": [
     {
-      "id": 1,
-      "name": "Liza Harmon",
-      "position": "Senior manager",
-      "departmentId": 1,
-      "sex": "female",
-      "date_of_birth": "1995-01-26"
-    },
-    {
       "id": 2,
       "name": "Daniel Abramov",
       "position": "engineer",
